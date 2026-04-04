@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>嘘妖怪Bot | Uso Yokai Bot</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      background: #111;
+      border-bottom: 1px solid #222;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    header .logo {
+      font-size: 2rem;
+    }
+    header h1 {
+      font-size: 1.4rem;
+      color: #ff4b6e;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .hero {
+      max-width: 800px;
+      width: 100%;
+      padding: 80px 40px 60px;
+      text-align: center;
+    }
+    .hero .yokai-emoji {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 0 20px rgba(255, 75, 110, 0.5));
+    }
+    .hero h2 {
+      font-size: 2.4rem;
+      color: #ff4b6e;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: #aaa;
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+      padding: 0 40px 80px;
+    }
+    .feature-card {
+      background: #161616;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover {
+      border-color: #ff4b6e44;
+    }
+    .feature-card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .feature-card h3 {
+      font-size: 1rem;
+      color: #e0e0e0;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 0.85rem;
+      color: #777;
+      line-height: 1.6;
+    }
+    footer {
+      width: 100%;
+      background: #111;
+      border-top: 1px solid #222;
+      padding: 24px 40px;
+      text-align: center;
+      color: #555;
+      font-size: 0.8rem;
+    }
+    footer a {
+      color: #888;
+      text-decoration: none;
+      margin: 0 12px;
+    }
+    footer a:hover {
+      color: #ff4b6e;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="logo">👺</span>
+    <div>
+      <h1>嘘妖怪Bot</h1>
+      <p>Uso Yokai Bot</p>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="yokai-emoji">👺</span>
+    <h2>嘘をつく妖怪、TikTokに降臨</h2>
+    <p>
+      嘘妖怪Botは、日本の妖怪「嘘つき」にインスパイアされた<br>
+      TikTok自動投稿ボットです。<br>
+      面白くて不思議なコンテンツを自動生成・投稿します。
+    </p>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="icon">🎴</div>
+      <h3>妖怪コンテンツ</h3>
+      <p>日本の妖怪にまつわる不思議な話を自動生成してTikTokに投稿します。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">⚙️</div>
+      <h3>TikTok連携</h3>
+      <p>TikTok APIと連携し、スケジュールに従って自動的にコンテンツを配信します。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔒</div>
+      <h3>プライバシー重視</h3>
+      <p>収集するデータは最小限。投稿目的以外にデータを使用しません。</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </p>
+    <p style="margin-top:12px;">&copy; 2024 Uso Yokai Bot. All rights reserved.</p>
+  </footer>
+</body>
+</html>
