@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>TikTok OAuth Callback - Uso Yokai Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, 'Hiragino Sans', sans-serif;
+      background: linear-gradient(135deg, #1a0a0a 0%, #0a0a1a 100%);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 640px;
+      background: rgba(20, 10, 20, 0.95);
+      border: 1px solid #5a2a5a;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    h1 {
+      font-size: 28px;
+      color: #ff6b9d;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      color: #aaa;
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+    .status {
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .status.success { background: #1a3a1a; border: 1px solid #5a8a5a; }
+    .status.error { background: #3a1a1a; border: 1px solid #8a5a5a; }
+    .status.info { background: #1a1a3a; border: 1px solid #5a5a8a; }
+    .code-box {
+      background: #000;
+      border: 1px solid #5a2a5a;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'SF Mono', Consolas, monospace;
+      font-size: 13px;
+      word-break: break-all;
+      margin: 12px 0;
+      user-select: all;
+      cursor: pointer;
+    }
+    button {
+      background: #ff6b9d;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    button:hover { background: #ff4585; }
+    .label { color: #888; font-size: 12px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>TikTok OAuth Callback</h1>
+    <p class="subtitle">Uso Yokai Bot / Japan Fake Bot</p>
+    <div id="result"></div>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+    const errorDesc = params.get('error_description');
+    const state = params.get('state');
+    const resultEl = document.getElementById('result');
+
+    if (error) {
+      resultEl.innerHTML =
+        '<div class="status error"><strong>認可エラー</strong><br>' +
+        error + (errorDesc ? ': ' + decodeURIComponent(errorDesc) : '') + '</div>';
+    } else if (code) {
+      const decodedCode = decodeURIComponent(code);
+      resultEl.innerHTML =
+        '<div class="status success"><strong>認可成功</strong>' +
+        (state ? '<br><small>state: ' + state + '</small>' : '') + '</div>' +
+        '<div class="label">認可コード（CLIに貼り付け）</div>' +
+        '<div class="code-box" id="code" onclick="copyCode()">' + decodedCode + '</div>' +
+        '<button onclick="copyCode()">コピー</button>' +
+        '<div class="status info" style="margin-top:20px"><strong>次のステップ:</strong><br>' +
+        '1. 上記コードをコピー<br>' +
+        '2. ターミナルで <code>uv run python scripts/tiktok_auth.py</code> を実行中の画面に貼り付け<br>' +
+        '3. アクセストークンが自動で .env に保存されます</div>';
+    } else {
+      resultEl.innerHTML =
+        '<div class="status info">このページはTikTok OAuth認証のコールバックURLです。<br>' +
+        '認可フローを開始するには <code>uv run python scripts/tiktok_auth.py</code> を実行してください。</div>';
+    }
+
+    function copyCode() {
+      const codeEl = document.getElementById('code');
+      if (!codeEl) return;
+      navigator.clipboard.writeText(codeEl.textContent).then(() => {
+        const btn = document.querySelector('button');
+        const orig = btn.textContent;
+        btn.textContent = '✓ コピー済み';
+        setTimeout(() => btn.textContent = orig, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
